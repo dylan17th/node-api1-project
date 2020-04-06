@@ -3,7 +3,7 @@ const server = express();
 const shortid = require('shortid');
 
 //variables
-const port = 5001;
+const port = 5002;
 const users = [];
 
 //globally used middleware
@@ -22,7 +22,11 @@ server.post('/api/users', validation, (req,res)=>{
 })
 
 server.get('/api/users' , (req,res)=>{
-    res.status(200).json(users)
+    if(users. length <= 0 ){
+    return res.status(500).json( {message: 'there are no users in the data base'})
+    }else{
+    return res.status(200).json(users)
+    }
 })
 
 server.get('/api/users/:id', (req,res)=> {
